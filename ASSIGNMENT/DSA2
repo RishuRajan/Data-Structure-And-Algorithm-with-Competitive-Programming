@@ -1,3 +1,8 @@
+Question 1
+Write the program for deleting an element from the beginning and from any position.
+Question 2
+Write the program for printing the array after rotating it k times towards left, where k
+would be taken as user input.
 //Write the program for deleting an element from the beginning and from any position.
 CODE-
 int DeleteHead(int array[], int n)
