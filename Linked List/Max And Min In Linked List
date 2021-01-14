@@ -1,4 +1,4 @@
-// { Driver Code Starts
+
 #include <bits/stdc++.h> 
 using namespace std; 
 
@@ -43,26 +43,26 @@ int maximum(Node *head)
 {
     //Your code here
      Node *temp=head;
-    int maximum=head->data;
+    int maxi=head->data;
     while(temp!=NULL)
     {
-        if(maximum<=temp->data)
-          maximum=temp->data;
+        if(maxi<=temp->data)
+          maxi=temp->data;
           temp=temp->next;
     }
-    return maximum;
+    return maxi;
 }
 
 int minimum(Node *head)
 {
     //Your code here
     Node *temp=head;
-    int minimum=head->data;
+    int mini=head->data;
     while(temp!=NULL)
     {
-        if(minimum>=temp->data)
-          minimum=temp->data;
+        if(mini>=temp->data)
+          mini=temp->data;
           temp=temp->next;
     }
-    return minimum;
+    return mini;
 }
