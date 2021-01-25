@@ -1,1 +1,74 @@
+1ST OPTIMIZED APPROACH SOURCE CODE-
 
+#include<bits/stdc++.h>
+using namespace std;
+typedef long long int ll;
+ll count_subarray_Xor(ll arr[],ll num)
+{ 
+    
+    ll store[2]={1,0}; 
+    ll answer=0,sumxor=0; 
+    for(ll i=0;i<=num-1;i++) 
+    { 
+        sumxor=((sumxor + arr[i]) % 2 + 2) % 2;
+        store[sumxor]++; 
+    } 
+    answer+=(store[0]*(store[0]-1)/2); 
+    answer+=(store[1]*(store[1]-1)/2); 
+    return answer; 
+}
+int main()
+{
+    ll t;
+    cin>>t;
+    while(t--)
+    {
+        ll n;
+        cin>>n;
+        ll arr[n];
+        for(ll i=0;i<n;i++)
+           cin>>arr[i];
+        cout<<count_subarray_Xor(arr,n)<<"\n";   
+    }
+    return 0;
+}
+
+2ND OPTIMIZED APPROACH SOURCE CODE-
+
+#include <bits/stdc++.h>
+using namespace std;
+ 
+long long countEvenSum(int a[], int n)
+{
+
+    long long res = 0; 
+    int s = 0; 
+    for (int i = n - 1; i >= 0; i--) 
+    {
+        if (a[i] % 2 == 1) 
+        {
+            s = n - i - 1 - s;
+        }
+        else
+        {
+            s = s + 1;
+        }
+        res = res + s;
+    }
+    return res;
+}
+int main()
+{
+	int t;
+	cin>>t;
+	while(t--)
+	{
+		int n;
+		cin>>n;
+		int arr[n];
+		for(int i=0;i<n;i++)
+		   cin>>arr[i];
+		cout<<countEvenSum(arr,n)<<endl;
+		
+	}
+}
