@@ -1,0 +1,29 @@
+//Applying Prefix sum concept in 2-D Array
+
+#include<bits/stdc++.h>
+using namespaces std;
+const int N=1e3+10;
+int arr[N][N];  //Globally Delaration of 2-D Array
+long long prefix[N][N]; //Globally Declaration of prefixsum Array
+int main()
+{
+  int n;
+  cin>>n;
+  for(int i=1;i<=n;i++)
+  {
+    for(int j=1;j<=n;j++)
+    {
+       cin>>arr[i][j];             //Taking input in 2-D array
+       prefix[i][j]=arr[i][j]+prefix[i-1][j]+prefix[i][j-1]+prefix[i-1][j-1]; // storing sum of each and every point from (1,1) in prefix sum 2-D array
+    }
+  }
+  int q;
+  cin>>q;
+  while(q--)
+  {
+    int a,b,c,d;
+    cin>>a>>b>>c>>d;
+    cout<prefix[c][d]-prefix[a-1][d]-prefix[c][b-1]+prefix[a-1][b-1]<<"\n"; //Finding sum of queries from (a,b) to (c,d) in 2-D array
+  }
+  return 0;
+ } 
