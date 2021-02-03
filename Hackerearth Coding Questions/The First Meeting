@@ -1,0 +1,46 @@
+#include<bits/stdc++.h>
+using namespace std;
+typedef long long int ll;
+
+int main()
+{
+//Here using Sieve of Erathothenes for checking prime number
+	ll prime[1000001];
+	ll maxN=1000000;
+	for(ll i=2;i<=maxN;i++)
+	   prime[i]=1;
+	prime[0]=0;
+	prime[1]=0;
+	for(ll i=2;i<=maxN;i++)
+	{
+		if(prime[i]==1)
+		{
+			for(ll j=i*i;j<=maxN;j+=i)
+			    prime[j]=0;
+		}
+	}
+
+
+	ll n;
+	cin>>n;
+	ll arr[n];
+	for(ll i=0;i<n;i++)
+	   cin>>arr[i];
+	ll maxvalue=-1;
+	ll minvalue=1e6;
+	ll ans=0;
+	for(ll i=0;i<n;i++)//Traversing array and checking for numbers which is prime in given array
+	{
+		if(prime[arr[i]]==1)
+		{
+		   ans=1;
+		   maxvalue=max(maxvalue,arr[i]);//finding maximum in array
+			minvalue=min(minvalue,arr[i]);//finding minimum in array
+		}
+	}
+	if(ans==1)
+	   cout<<abs(minvalue-maxvalue);
+	else
+	   cout<<-1<<"\n";
+	return 0;
+}
