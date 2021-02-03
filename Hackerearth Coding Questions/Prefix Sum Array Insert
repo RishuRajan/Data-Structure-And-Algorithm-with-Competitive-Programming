@@ -1,0 +1,30 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+    int n,q;
+    cin>>n>>q;
+    int a[n];
+    for(int i=0;i<n;i++)//Taking Input In Array
+    {
+        cin>>a[i];
+    }
+    int pre[n]={0};//prefix sum array initialised with zero
+    pre[0]=a[0];
+    for(int i=1;i<n;i++){     //prefix sum Array 
+        pre[i]=pre[i-1]+a[i];
+    }
+    while(q--){   
+        int x,y,z;
+        cin>>x>>y>>z;
+        if(x==1){     //according to question if x=1 then we have to update z value at y position
+            a[y]=z;
+            for(int i=y;i<=n;i++){    //Again finding prefix sum updated array
+                pre[i]=pre[i-1]+a[i];
+            }
+        }
+        else{
+            cout<<pre[z]-pre[y-1]<<endl;  //Printing Required Range Query sum
+        }
+    }
+    return 0;
+}
