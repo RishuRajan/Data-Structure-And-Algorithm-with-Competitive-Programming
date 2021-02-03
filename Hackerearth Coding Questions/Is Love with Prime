@@ -1,0 +1,38 @@
+#include <bits/stdc++.h> 
+using namespace std; 
+typedef long long int ll;
+bool isPrime(ll n) //Function to check number is prime or not
+{ 
+	if (n <= 1) 
+		return false; 
+	for (ll i=2; i*i<=n; i++)
+    { 
+		if (n % i == 0) 
+			return false; 
+	} 
+	return true; 
+}  
+int main() 
+{ 
+	ll t;
+   cin>>t;
+   while(t--)
+   {
+      ll n,sum;
+      cin>>n;
+	  for(int i=1;i<=n;i++)
+	  {
+		  if(isPrime(i)==true)
+		  {
+			  int m=n-i;
+			  if(isPrime(m))
+			     sum=i+m;
+		  }
+	  }
+	   if(sum==n) 
+		   cout << "Deepa"<<"\n"; 
+	   else
+		   cout << "Arjit"<<"\n";
+   } 
+	return 0; 
+} 
