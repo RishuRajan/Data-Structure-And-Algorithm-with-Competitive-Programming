@@ -1,0 +1,31 @@
+//THIS IS THE BASIC STRING BASED QUESTION IN WHICH WE LAERN SOME BASIC CONECPT
+
+#include<bits/stdc++.h> //This is a Generalised Header File in cpp in which it includes all 
+using namespace std;
+
+int countwords(string str)
+{
+   stringstream s(str); //stringstream is used for breaking input string into words
+   string word;    //For storing individual words
+   int count=0;    //for counting words in inputed string
+   while(s>>word)
+      count++;
+   return count;
+}   
+
+int main()
+{
+
+  ios_base::sync_with_stdio(false);  //This is for fast input output as cin,cout are slower than printf() and scanf()
+  cin.tie(NULL);
+  int t;
+  cin>>t;
+  cin.ignore(numeric_limits<streamsize>::max(),'\n'); //cin.ignore() function is used for ignore or clear one or more characters from input buffer
+  while(t--)
+  {
+    string s;
+    getline(cin,s);
+    cout<<countwords(s)<<"\n";
+  }
+  return 0;
+}  
