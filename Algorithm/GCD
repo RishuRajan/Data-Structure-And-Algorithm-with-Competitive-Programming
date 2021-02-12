@@ -1,0 +1,20 @@
+//This Algorithm is based on Eculid Division and This Algorithm Helps to calculate Greatest Common Divisor in O(log(max(a,b))) Time Complexity
+
+#include<bits/stdc++.h>
+using namespace std;
+typedef long long int ll;
+
+ll gcd(ll a,ll b) //function to calculate gcd
+{
+   if(b==0)     //Base condition
+      return a;
+   return gcd(b,a%b); //Recursive condition
+}
+
+int main()
+{
+  ll a,b;
+  cin>>a>>b;
+  cout<<gcd(a,b);   //function call
+  return 0;
+}
