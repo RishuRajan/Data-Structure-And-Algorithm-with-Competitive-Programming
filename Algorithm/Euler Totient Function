@@ -1,0 +1,25 @@
+//Totient Function-The totient $ of a positive integer N is defined as the number of positive integers less than or equal to N that are co-prime to N.
+
+#include<bits/stdc++.h>
+#include<algorithm>
+using namespace std;
+int totient(int num)
+{
+   int count=0;
+   for(int i=1;i<=num;i++)
+   {
+      if(__gcd(i,num)==1)
+         count++;
+   }
+   return count;
+}
+int main()
+{
+   ios::sync_with_stdio(0);
+   cin.tie(0);
+   long int n;
+   cin>>n;
+   cout<<totient(n);
+   return 0;
+}
+  
