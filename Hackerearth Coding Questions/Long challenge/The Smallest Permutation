@@ -1,1 +1,74 @@
 //SOURCE CODE AFTER CONTENTS ENDS
+//28-02-2021
+
+//IN PYTHON-
+
+for _ in range(int(input())):
+    size=int(input())
+    vect=list(map(int,input().split()))
+    Between=0
+    vect1=sorted(vect)
+    for r in range(size):
+        if vect[r]!=vect1[r]:
+            index=vect.index(min(vect[r:]))
+            vect[r],vect[index]=vect[index],vect[r]
+            Between=1
+            break
+    if Between==0:
+        vect[size-2],vect[size-1]=vect[size-1],vect[size-2]
+    print(*vect)
+
+
+   //CPP-
+   
+   #include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+    int t;
+    cin >> t;
+    while( t-- )
+    {
+        int n;
+        cin >> n;
+        int a[n];
+        for( int i = 0; i < n; i++ )
+            cin >> a[i];
+ 
+        int b[n];
+        for( int i = 0; i < n; i++ )
+            b[i] = a[i];
+        
+        sort( b, b+n );
+        int x = 0, y = 0, temp = 0;
+        for( int i = 0; i < n; i++ )
+        {
+            if( a[i] != b[i] )
+            {
+                x = a[i];
+                y = b[i];
+                temp = 1;
+                break;
+            }
+        }
+ 
+        if( temp == 0 )
+            swap( a[n-1], a[n-2] );
+        else
+        {
+            for( int i = 0; i < n; i++ )
+            {
+                if( a[i] == x )
+                    a[i] = y; 
+ 
+                else if( a[i] == y )
+                    a[i] = x;
+            }
+        }
+ 
+        for( int i = 0; i < n; i++ )
+            cout << a[i] << " ";
+        cout << "\n";
+    }
+}
+   
