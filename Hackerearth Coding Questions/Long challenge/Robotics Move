@@ -1,1 +1,17 @@
 //SOURCE CODE IS AFTER CONTEST
+//28-02-2021
+SOURCE CODE-
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+    long long int t;
+    cin>>t;
+    while(t--)
+    {
+        long long int n;
+        cin>>n;
+        cout<<(n*(n+1))<<"\n";
+    }
+    return 0;
+}
