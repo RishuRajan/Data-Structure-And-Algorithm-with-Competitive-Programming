@@ -12,7 +12,7 @@ class solution{
         int start=0;
         int mid=0;
         int end=n-1;
-        while(start<=end)
+        while(mid<=end)
         {
           if(arr[mid]==0)
           {
