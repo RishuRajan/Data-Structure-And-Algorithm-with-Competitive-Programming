@@ -1,1 +1,46 @@
 //SOURCE CODE AFTER CONTEST ENDS
+//28-02-2021
+
+SOURCE CODE-
+#include <bits/stdc++.h> 
+using namespace std; 
+typedef long long int ll;
+void result(string str,ll k) 
+{ 
+    ll len=str.length(); 
+    ll arr[len];  
+    for(ll i = 0;i<len;i++) 
+	{ 
+        int ans=(str[i]-'a'); 
+        if(ans==0) 
+            arr[i]=0; 
+        else
+            arr[i] =(26 -ans); 
+    }   
+    for(ll i=0;i<len;i++) 
+	{  
+        if(k>=arr[i])
+		{ 
+            str[i]='a'; 
+            k=k-arr[i]; 
+        } 
+    } 
+    k = k % 26;
+    str[len - 1] = str[len- 1] + k; 
+    cout << str <<"\n"; 
+} 
+
+int main() 
+{
+	ll t;
+	cin >> t;
+	while( t-- )
+	{
+		ll n, k;
+		cin>>n>>k;
+    	string str;
+		cin >> str; 
+    	result(str,k);
+	} 
+    return 0;
+}
