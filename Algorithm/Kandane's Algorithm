@@ -1,0 +1,24 @@
+//THIS ALGORITHM IS USED TO FIND CONTIGUOUS SUB-ARRAY WITH MAXIMUM SUM IN O(n) Time Complexity and O(1) Space complexity
+
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+  int n;
+  cin>>n;
+  int arr[n+1];
+  for(int i=1;i<=n;i++)
+      cin>>arr[i];
+  int maxi=INT_MIN;
+  int sum=0;
+  for(int i=1;i<=n;i++)
+  {
+    sum+=arr[i];
+    if(sum>maxi)
+       maxi=sum;
+    if(sum<0)
+       sum=0;
+  }
+  cout<<maxi;
+  return 0;
+} 
