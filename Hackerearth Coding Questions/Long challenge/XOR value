@@ -1,0 +1,57 @@
+SOURCE CODE-
+//4-03-2021
+
+#include<bits/stdc++.h>
+using namespace std;
+typedef long long int ll;
+
+const ll N=100000;
+ll counting[N];
+ll apowerb(ll a,ll b)
+{
+    ll result = 1;
+    while(b > 0) 
+    {
+        if (b & 1)
+            result = result * a;
+        a = a * a;
+        b >>= 1;
+    }
+    return result;
+}
+
+int main()
+{
+  ll t;
+  cin >> t;
+  while( t-- )
+  {
+    ll n;
+    cin>>n;
+    ll arr[n];
+    for(ll i=0;i<n;i++)
+      cin>>arr[i];
+    ll bitcurrent,answer=0;
+    memset(counting,0,sizeof(counting));
+    for(ll i=0;i<n;i++)
+    {
+      bitcurrent=0;
+      while(arr[i]!=0)
+      {
+        if(arr[i]&1)
+          counting[bitcurrent]++;
+        arr[i] >>= 1;
+        bitcurrent++;
+      }
+    }
+     bitcurrent=0;
+    while(bitcurrent<100)
+    {
+      if(counting[bitcurrent]>n/2)
+          answer=answer+apowerb(2,bitcurrent);
+      bitcurrent++;
+    }
+    cout<<answer<<"\n";
+  }
+  return 0;
+}
