@@ -34,3 +34,37 @@ Sample Output
 25
 
 SOURCE CODE-
+#include<bits/stdc++.h>
+using namespace std;
+const long int N=1000001;
+long int prefix[N];
+int main()
+{
+    long int n;
+    cin>>n;
+    long int arr[n];
+    for(long int i=0;i<n;i++)
+        cin>>arr[i];
+    long int q;
+    cin>>q;
+    while(q--)
+    {
+        long int x,l,r;
+        cin>>x>>l>>r;
+        for(long int i=l;i<=r;i++)
+		   arr[i]=arr[i]+x;
+	}
+	long int brr[n];
+	for(long int i=0;i<n;i++)
+	   brr[i]=arr[i];
+	/*for(int i=0;i<n;i++)
+	  cout<<arr[i]<<" ";*/
+	long int maximum=brr[0];
+    for(long int i=0;i<n;i++)
+	{
+		if(maximum<=brr[i])
+		   maximum=brr[i];
+	}
+    cout<<maximum;
+    return 0;
+}
