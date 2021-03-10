@@ -47,4 +47,32 @@ Sample Output
 NO
 
 //SOURCE CODE-
-
+#include<bits/stdc++.h>
+using namespace std;
+const int N=1e5+10;
+int hash[N];
+int main()
+{
+  int m,n;
+  cin>>m>>n;
+  while(m--)
+  {
+     int key,lock;
+     cin>>key>>lock;
+     hash[lock]=1;
+  }
+  bool canopen=true;
+  while(n--)
+  {
+    int val;
+    cin>>val;
+    if(hash[val]==0)
+    canopen=false;
+  }
+  if(canopen==true)
+     cout<<"YES";
+  else
+     cout<<"NO";
+  return 0;
+}  
+     
