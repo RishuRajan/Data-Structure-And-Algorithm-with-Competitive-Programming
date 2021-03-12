@@ -1,0 +1,63 @@
+//QUESTION STATEMENT-
+Given an array of integers where each element represents the max number of steps that can be made forward from that element. Find the minimum number of jumps to reach the end of the array (starting from the first element). If an element is 0, then you cannot move through that element.
+
+Example 1:
+
+Input:
+N=11 
+arr=1 3 5 8 9 2 6 7 6 8 9 
+Output: 3 
+Explanation: 
+First jump from 1st element to 2nd 
+element with value 3. Now, from here 
+we jump to 5th element with value 9, 
+and from here we will jump to last. 
+Example 2:
+
+Input :
+N= 6
+arr= 1 4 3 2 6 7
+Output: 2 
+Explanation: 
+First we jump from the 1st to 2nd element 
+and then jump to the last element.
+Your task:
+You don't need to read input or print anything. Your task is to complete function minJumps() which takes the array arr and it's size N as input parameters and returns the minimum number of jumps.
+
+Expected Time Complexity: O(N)
+Expected Space Complexity: O(1)
+
+Constraints:
+1 ≤ N ≤ 107
+0 <= ai <= 107
+
+//SOURCE CODE-
+//Function to Find minimum jumps
+int minjumps(int arr[],int n)
+{
+  int jumps=1;//current jumps we did
+  int maxireacheable=arr[0];//maximum reacheable jump we need to reach
+  int step=arr[0];
+  if(n==1)               //if there are only one element in array then no of steps will be zero
+     return 0;
+  else if(arr[0]==0)   //if 1st element of array will be zero then then in this case no jumps counted so print/return -1 
+       return -1;
+  else
+  {
+     for(int i=1;i<n;i++) //Traversing the given array from 1 
+     {
+       if(i==(n-1))  // if we reach to end then we return the count of jumps
+          return jump;
+       maxireacheable=max(maxireacheable,i+arr[i]); //update the maxireacheable
+       step--;
+       if(step==0)  //check if there is no steps left
+       {
+         jump++;  //check if there is no steps left then we have to take a jump
+         if(i>=maxireacheable) //now update the steps and check if current index and previous index is the maximum reacheable index then it is impossible to move further
+             return -1;
+         step=maxireacheable-i;
+       }
+     }
+   }
+   return -1;//we will never reach here
+ }
