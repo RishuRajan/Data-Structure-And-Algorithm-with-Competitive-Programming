@@ -33,3 +33,51 @@ Sample Output
 0
 -1
 //SOURCE CODE-
+#include<bits/stdc++.h>
+using namespace std;
+const int N=2e5+10;
+int arr[N];
+int hash[N];
+
+int main()
+{
+   ios::sync_with_stdio(0);
+   cin.tie(0);
+   int n;
+   cin>>n;
+   int arr[n];
+   for(int i=0;i<n;i++)
+   {
+      cin>>arr[i];
+      hash[arr[i]]++;
+   }
+   int q;
+   cin>>q;
+   while(q--)
+   {
+      int i,price;
+      cin>>i>>price;
+      i--;
+      if(arr[i]==price)
+      {
+         cout<<0<<"\n";
+         continue;
+      }
+      hash[arr[i]]--;
+      if(arr[i]>price)
+        cout<<((hash[price]==0)?-1:hash[price])<<"\n";
+      else
+      {
+         int req=price-arr[i];
+         if(hash[req]==0 && hash[price]==0)
+           cout<<"-1"<<"\n";
+         else
+            cout<<(hash[req]+hash[price])<<"\n";
+      }
+      hash[arr[i]]++;
+   }   
+
+
+   return 0;
+}
+  
