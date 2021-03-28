@@ -1,4 +1,4 @@
-//SHORTEST COMMON SUBSEQUENCE
+//SHORTEST COMMON SUPERSEQUENCE
 Given two strings str1 and str2, return the shortest string that has both str1 and str2 as subsequences.  If multiple answers exist, you may return any of them.
 
 (A string S is a subsequence of string T if deleting some number of characters from T (possibly 0, and the characters are chosen anywhere from T) results in the string S.)
@@ -12,3 +12,64 @@ str2 = "cab" is a subsequence of "cabac" because we can delete the last "ac".
 The answer provided is the shortest such string that satisfies these properties.
 
 //SOURCE CODE-
+#include<bits/stdc++.h>
+using namespace std;
+string SCS(string s1,string s2)
+{
+    int len1=s1.length();
+    int len2=s2.length();
+    int memo[len1+1][len2+1];
+    memset(memo,0,sizeof(memo));
+    memo[0][0]=0;
+    for(int i=1;i<len1+1;i++)
+    {
+        for(int j=1;j<len2+1;j++)
+        {
+            if(s1[i-1]==s2[j-1])
+               memo[i][j]=(1+memo[i-1][j-1]);
+            else
+               memo[i][j]=max(memo[i-1][j],memo[i][j-1]);
+        }
+    }
+    int i=len1;
+    int j=len2;
+    string res="";
+    while(i>0 && j>0)
+    {
+        if(s1[i-1]==s2[j-1])
+        {
+            res.push_back(s1[i-1]);
+            i--;
+            j--;
+        }
+        else if(memo[i][j-1]>memo[i-1][j])
+        {
+            res.push_back(s2[j-1]);
+            j--;
+        }
+        else
+        {
+            res.push_back(s1[i-1]);
+            i--;
+        }
+    }
+        while(i>0)
+        {
+          res.push_back(s1[i-1]);
+          i--;
+        }
+        while(j>0)
+        {
+         res.push_back(s2[j-1]);
+         j--;
+        }
+        reverse(res.begin(),res.end());
+        return res;
+}
+int main()
+{
+    string x,y;
+    cin>>x>>y;
+    cout<<SCS(x,y);
+    return 0;
+}
