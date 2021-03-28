@@ -1,0 +1,54 @@
+//Problem Statement-
+Given two strings ‘str1’ and ‘str2’ of size m and n respectively. The task is to remove/delete and insert the minimum number of characters from/in str1 to transform it into str2. It could be possible that the same character needs to be removed/deleted from one point of str1 and inserted to some another point.
+
+Example 1: 
+Input : 
+str1 = "heap", str2 = "pea" 
+Output : 
+Minimum Deletion = 2 and
+Minimum Insertion = 1
+Explanation:
+p and h deleted from heap
+Then, p is inserted at the beginning
+One thing to note, though p was required yet
+it was removed/deleted first from its position and
+then it is inserted to some other position.
+Thus, p contributes one to the deletion_count
+and one to the insertion_count.
+
+//SOURCE CODE-
+#include<bits/stdc++.h>
+using namespace std;
+int LCS(string s1,string s2,int len1,int len2)
+{
+  int memo[len1+1][len2+1];
+  memset(memo,0,sizeof(memo));
+  memo[0][0]=0;
+  for(int i=1;i<len1+1;i++)
+  {
+    for(int j=1;j<len2+1;j++)
+    {
+      if(s1[i-1]==s2[j-1])
+         memo[i][j]=(1+memo[i-1][j-1]);
+      else
+          memo[i][j]=max(memo[i-1][j],memo[i][j-1]);
+    }
+  }
+  return memo[len1][len2];
+}
+void printInsertionAndDeletion(string str1,string str2)
+{
+  int m=str1.length();
+  int n=str2.length();
+  int lengthlcs=LCS(str1,str2,m,n);
+  cout<<"Minimum Number Of Deletion-"<<(m-lengthlcs)<<"\n";
+  cout<<"Minimum Number Of Insertion-"<<(n-lengthlcs)<<"\n";
+}
+int main()
+{
+  string x,y;
+  cin>>x>>y;
+  printInsertionAndDeletion(x,y);
+  return 0;
+}  
+  
