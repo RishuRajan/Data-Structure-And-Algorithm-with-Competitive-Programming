@@ -1,0 +1,67 @@
+//LONGEST REPEATING SUBSEQUENCE
+//PROBLEM STATEMENT-
+Given a string, print the longest repeating subsequence such that the two subsequence don’t have same string character at same position, i.e., any i’th character in the two subsequences shouldn’t have the same index in the original string.
+Input: str = "aabb"
+Output: "ab"
+
+Input: str = "aab"
+Output: "a"
+The two subsequence are 'a'(first) and 'a' 
+(second). Note that 'b' cannot be considered 
+as part of subsequence as it would be at same
+index in both
+
+//SOURCE CODE-
+#include<bits/stdc++.h>
+using namespace std;
+
+string LRS(string str)
+{
+	int len= str.length();
+
+	// Create and initialize DP table
+	int memo[len+1][len+1];
+    //initlizing first row and column in dp table
+	memset(memo,0,sizeof(memo));
+	memo[0][0]=0;
+	// Fill dp table 
+	for (int i=1; i<n+1; i++)
+	{
+		for (int j=1; j<n+1; j++)
+		{
+			// If characters match and characters present on different indexes 
+			if (str[i-1] == str[j-1] && i != j)
+				memo[i][j] = 1 + memo[i-1][j-1];		
+					
+			// If characters do not match
+			else
+				memo[i][j] = max(memo[i][j-1], memo[i-1][j]);
+		}
+	}
+	int i=n;//initialize the length for row
+	int j=n;//initialize the length for column
+    string res="";//initialize empty string
+    while(i>0 && j>0)//traversing till either of the string becomes empty
+    {
+        if(str[i-1]==str[j-1] && i!=j)//if string character are matching and are on differet index
+        {
+            res.push_back(str[i-1]);//pushing the required character in res string and moving to (i-1)(j-1)th box
+            i--;
+            j--;
+        }
+        else if(memo[i][j-1]>memo[i-1][j])//if characters are not matching then we move in that direction which represents maximum among dp[i-1][j] or dp[j-1][i] box
+                j--;
+        else
+             i--;
+    }
+    reverse(res.begin(),res.end());//lastly we got the result in reverse order that's why we reverse it
+    return res;
+}
+
+int main()
+{
+    string s;
+    cin>>s;
+    cout<<LRS(s);
+    return 0;
+}
