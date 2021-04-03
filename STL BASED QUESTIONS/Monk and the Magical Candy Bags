@@ -39,3 +39,38 @@ Monk eats all candies from Third bag (3). The state of bags becomes:
 Hence, the Monk eats 7+4+3= 14
 
 SOURCE CODE-
+
+#include<bits/stdc++.h>
+using namespace std;
+typedef long long int ll;
+int main()
+{
+   ios::sync_with_stdio(0);
+   cin.tie(0);
+   int t;
+   cin>>t;
+   while(t--)
+   {
+      ll n,k;
+      cin>>n>>k;
+      multiset<ll>s;
+      for(int i=0;i<n;i++)
+      {
+         ll candy;
+         cin>>candy;
+         s.insert(candy);
+      }
+      ll total_sum=0;
+      for(int i=0;i<k;i++)
+      {
+         auto last_it=(--s.end());
+         ll candy_ct=(*last_it);
+         total_sum+=candy_ct;
+         s.erase(last_it);
+         s.insert(candy_ct/2);
+      }
+      cout<<total_sum<<endl;
+   }
+   return 0;
+}
+  
