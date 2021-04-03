@@ -1,0 +1,59 @@
+Problem-
+
+Monk is a multi-talented person, and prepares results for his college in his free time. (Yes, he is still in love with his old college!) He gets a list of students with their marks. The maximum marks which can be obtained in the exam is 100.
+The Monk is supposed to arrange the list in such a manner that the list is sorted in decreasing order of marks. And if two students have the same marks, they should be arranged in lexicographical manner.
+
+Help Monk prepare the same!
+Input format:
+On the first line of the standard input, there is an integer N, denoting the number of students. N lines follow, which contain a string and an integer, denoting the name of the student and his marks.
+
+Output format:
+You must print the required list.
+
+Constraints:
+1 <= N <= 105
+1 <= | Length of the name | <= 100
+1 <= Marks <= 100
+
+Sample Input-
+
+3
+Eve 78
+Bob 99
+Alice 78
+
+Sample Output-
+Bob 99
+Alice 78
+Eve 78
+
+//SOURCE CODE-
+#include<bits/stdc++.h>
+using namespace std;
+bool compare(pair<int,string>p1,pair<int,string>p2)
+{
+   if(p1.first!=p2.first)
+       return p1.first>p2.first;
+   return p2.second>p1.second;
+}
+int main()
+{
+	ios_base::sync_with_stdio(false);
+  int n;
+  cin>>n;
+  
+    string str;
+    int marks;
+    vector<pair<int,string>>rishu;
+    for(int i=0;i<n;i++)
+    {
+       cin>>str>>marks;
+       rishu.push_back({marks,str});
+    }
+    sort(rishu.begin(),rishu.end(),compare);
+    for(int i=0;i<n;i++)
+       cout<<rishu[i].second<<" "<<rishu[i].first<<"\n";
+  
+  return 0;
+}
+
