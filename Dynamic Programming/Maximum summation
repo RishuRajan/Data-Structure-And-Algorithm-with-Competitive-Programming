@@ -1,10 +1,8 @@
+//PROBLEM STATEMENT-
 A number n can be broken into three parts n/2, n/3 and n/4 (consider only integer part). Each number obtained in this process can be divided further recursively. Find the maximum sum that can be obtained by summing up the divided parts together.
 Note: The maximum sum may be obtained without dividing n also.
 
- 
-
-Example 1:
-
+Example 1:-
 Input:
 n = 12
 Output: 13
@@ -14,8 +12,7 @@ sum is = (6 + 4 + 3) = 13. Further breaking 6,
 4 and 3 into parts will produce sum less than
 or equal to 6, 4 and 3 respectively.
 
-â€‹Example 2:
-
+Example 2:-
 Input:
 n = 24
 Output: 27
@@ -24,3 +21,32 @@ Explanation: Break n = 24 in three parts
 sum is = (12 + 8 + 6) = 26 . But recursively
 breaking 12 would produce value 13.
 So our maximum sum is 13 + 8 + 6 = 27.
+
+//SOURCE CODE-
+
+#include<bits/stdc++.h>
+using namespace std;
+class Solution
+{
+    public:
+        int maxSum(int n)
+        {
+            //code here.
+            if(n==0)
+               return 0;
+            return max(n,maxSum(n/2)+maxSum(n/3)+maxSum(n/4));
+        }
+};
+int main()
+{
+    int t;
+    cin>>t;
+    while(t--)
+    {
+        int n;
+        cin>>n;
+        Solution ob;
+        cout<<ob.maxSum(n)<<"\n";
+    }
+    return 0;
+}  
