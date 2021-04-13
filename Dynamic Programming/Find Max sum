@@ -1,0 +1,59 @@
+//PROBLEM STATEMENT-
+Stickler the thief wants to loot money from a society having n houses in a single line. He is a weird person and follows a certain rule when looting the houses. According to the rule, he will never loot two consecutive houses. At the same time, he wants to maximize the amount he loots. The thief knows which house has what amount of money but is unable to come up with an optimal looting strategy. He asks for your help to find the maximum money he can get if he strictly follows the rule. Each house has a[i] amount of money present in it.
+
+Example 1:
+Input:
+n = 6
+a[] = {5,5,10,100,10,5}
+Output: 110
+Explanation: 5+100+5=110
+Example 2:
+
+Input:
+n = 3
+a[] = {1,2,3}
+Output: 4
+Explanation: 1+3=4
+
+//SOURCE CODE-
+#include<bits/stdc++.h>
+using namespace std;
+class Solution{
+    public:
+    ll findmaxsum(ll arr[],ll n)
+    {
+       if(n==1)
+          return arr[0];
+       if(n==2)
+          return max(arr[0],arr[1]);
+      ll dp[n+1];
+      dp[0]=arr[0];
+      dp[1]=max(arr[0],arr[1]);
+      for(ll i=3;i<=n;i++)
+         dp[i]=max(dp[i-1],dp[i-2]+arr[i-1]);
+      return dp[n];
+     }
+  };
+  int main()
+  {
+	int t;
+	cin>>t;
+	while(t--)
+	{
+	    //taking number of houses
+		ll n;
+		cin>>n;
+		ll a[n];
+		
+		//inserting money of each house in the array
+		for(ll i=0;i<n;++i)
+			cin>>a[i];
+		Solution ob;
+		//calling function FindMaxSum()
+		cout<<ob.FindMaxSum(a,n)<<endl;
+	}
+	return 0;
+}
+   
+       
+    
