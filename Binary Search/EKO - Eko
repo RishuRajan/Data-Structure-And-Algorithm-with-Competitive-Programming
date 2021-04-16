@@ -1,0 +1,73 @@
+//PROBLEM STATEMENT-
+Lumberjack Mirko needs to chop down M metres of wood. It is an easy job for him since he has a nifty new woodcutting machine that can take down forests like wildfire. However, Mirko is only allowed to cut a single row of trees.
+
+Mirko‟s machine works as follows: Mirko sets a height parameter H (in metres), and the machine raises a giant sawblade to that height and cuts off all tree parts higher than H (of course, trees not higher than H meters remain intact). Mirko then takes the parts that were cut off. For example, if the tree row contains trees with heights of 20, 15, 10, and 17 metres, and Mirko raises his sawblade to 15 metres, the remaining tree heights after cutting will be 15, 15, 10, and 15 metres, respectively, while Mirko will take 5 metres off the first tree and 2 metres off the fourth tree (7 metres of wood in total).
+
+Mirko is ecologically minded, so he doesn‟t want to cut off more wood than necessary. That‟s why he wants to set his sawblade as high as possible. Help Mirko find the maximum integer height of the sawblade that still allows him to cut off at least M metres of wood.
+
+Input
+The first line of input contains two space-separated positive integers, N (the number of trees, 1 ≤ N ≤ 1 000 000) and M (Mirko‟s required wood amount, 1 ≤ M ≤ 2 000 000 000).
+
+The second line of input contains N space-separated positive integers less than 1 000 000 000, the heights of each tree (in metres). The sum of all heights will exceed M, thus Mirko will always be able to obtain the required amount of wood.
+
+Output
+The first and only line of output must contain the required height setting.
+
+Example
+Input:
+4 7
+20 15 10 17
+
+Output:
+15
+Input:
+5 20
+4 42 40 26 46
+
+Output:
+36
+
+//SOURCE CODE-
+#include<bits/stdc++.h>
+using namespace std;
+bool isvalid(int arr[],int n,int m,int mid)
+{
+	int curr_sum=0;//current sum of Amount of cut part of tree
+	for(int i=1;i<=n;i++)
+	{
+		if(arr[i]>m)
+		   curr_sum=curr_sum+arr[i]-mid;
+	}
+	if(curr_sum>=m)
+	   return true;
+	else
+	   return false;
+}
+int main()
+{
+	//n is number of trees and m is amount(sum) of cut part needed of tree
+	int n,m;
+	cin>>n>>m;
+	int arr[n];
+	for(int i=1;i<=n;i++)//Takeing input for Heights of the Tree 
+	   cin>>arr[i];
+	int result=0;//it stores the required cut value
+	int low=0;    //setting lower bound value as zero
+	int high= *max_element(arr,arr+n);//setting upper bound value as maximum height of tree
+
+	while(low<=high)//travering through array
+	{
+		int mid=low+(high-low)/2;
+		if(isvalid(arr,n,m,mid)==true)
+		{
+			result=mid;
+			low=mid+1;
+		}
+		else
+		{
+		   high=mid-1;
+		}
+	}
+	cout<<result;
+	return 0;
+}
