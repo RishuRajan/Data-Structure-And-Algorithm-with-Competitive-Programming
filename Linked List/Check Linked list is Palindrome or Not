@@ -1,0 +1,50 @@
+//PROBLEM STATEMENT-
+Given a singly linked list of size N of integers. The task is to check if the given linked list is palindrome or not.
+
+Example 1:
+
+Input:
+N = 3
+value[] = {1,2,1}
+Output: 1
+Explanation: The given linked list is
+1 2 1 , which is a palindrome and
+Hence, the output is 1.
+
+//SOURCE CODE-
+class Solution{
+  public:
+    //Function to check whether the list is palindrome.
+    bool isPalindrome(Node *head)
+    {
+        //Your code here
+       Node *sp=head;
+       Node *fp=head;
+       while(fp!=NULL && fp->next!=NULL)
+       {
+           sp=sp->next;
+           fp=fp->next->next;
+       }
+       Node *prev=NULL;
+       Node *next;
+       Node *curr=sp;
+       while(curr!=NULL)
+       {
+           next=curr->next;
+           curr->next=prev;
+           prev=curr;
+           curr=next;
+       }
+       fp=head;
+       while(prev!=NULL)
+       {
+           if(fp->data!=prev->data)
+           {
+               return false;
+           }
+           fp=fp->next;
+           prev=prev->next;
+       }
+       return true;
+    }
+};
