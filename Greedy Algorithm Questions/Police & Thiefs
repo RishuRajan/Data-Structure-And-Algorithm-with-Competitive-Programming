@@ -16,3 +16,39 @@ and second police man can catch either second
 or third thief.
 
 //SOURCE CODE-
+class Solution{
+    public:
+    int catchThieves(char arr[], int n, int k) 
+    { 
+    	int result = 0; 
+    	vector<int> thief; 
+    	vector<int> police; 
+    
+    	for (int i = 0; i < n; i++) { 
+    		if (arr[i] == 'P') 
+    			police.push_back(i); 
+    		else if (arr[i] == 'T') 
+    			thief.push_back(i); 
+    	} 
+    
+    	// track lowest current indices of 
+    	// thief: thi[l], police: pol[r] 
+    	int l = 0, r = 0; 
+    	while (l < thief.size() && r < police.size()) { 
+    
+    		// can be caught 
+    		if (abs(thief[l] - police[r]) <= k) { 
+    			result++; 
+    			l++; 
+    			r++; 
+    		} 
+    
+    		// increment the minimum index 
+    		else if (thief[l] < police[r]) 
+    			l++; 
+    		else
+    			r++; 
+    	} 
+    	return result; 
+    } 
+};
