@@ -1,0 +1,18 @@
+//PROBLEM STATEMENT-
+Given an array of size n such that each element contains either a 'P' for policeman or a 'T' for thief. Find the maximum number of thieves that can be caught by the police. 
+Keep in mind the following conditions :
+
+Each policeman can catch only one thief.
+A policeman cannot catch a thief who is more than K units away from him.
+Example 1:
+
+Input:
+N = 5, K = 1
+arr[] = {P, T, T, P, T}
+Output: 2
+Explanation: Maximum 2 thieves can be 
+caught. First policeman catches first thief 
+and second police man can catch either second 
+or third thief.
+
+//SOURCE CODE-
