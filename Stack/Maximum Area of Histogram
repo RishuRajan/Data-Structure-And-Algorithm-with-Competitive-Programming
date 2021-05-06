@@ -17,3 +17,90 @@ histogram will be 8x2 = 16.
 
 //SOURCE CODE-
 
+#include <bits/stdc++.h>
+using namespace std;
+
+class Solution
+{
+    public:
+    //Function to find largest rectangular area possible in a given histogram.
+    long long getMaxArea(long long arr[], int n)
+    {
+        // Your code here
+        stack<pair<long long,long long>>rishu;
+        vector<long long>left;
+        vector<long long>right;
+        
+        //finding index array of Nearest Smallest to Right
+        for(int i=0;i<n;i++)
+        {
+            if(rishu.size()==0)
+               left.push_back(-1);
+            else if(rishu.size()>0 && rishu.top().first<arr[i])
+                  left.push_back(rishu.top().second);
+            else if(rishu.size()>0 && rishu.top().first>=arr[i])
+            {
+                while(rishu.size()>0 && rishu.top().first>=arr[i])
+                     rishu.pop();
+                if(rishu.size()==0)
+                   left.push_back(-1);
+                else
+                    left.push_back(rishu.top().second);
+            }
+            rishu.push({arr[i],i});
+        }
+        
+        while(rishu.size()>0)
+             rishu.pop();
+        
+        //Finding Index Array of Nearest smallest to left
+        for(int i=n-1;i>=0;i--)
+        {
+            if(rishu.size()==0)
+               right.push_back(n);
+            else if(rishu.size()>0 && rishu.top().first<arr[i])
+                 right.push_back(rishu.top().second);
+            else if(rishu.size()>0 && rishu.top().first>=arr[i])
+            {
+                while(rishu.size()>0 && rishu.top().first>=arr[i])
+                       rishu.pop();
+                if(rishu.size()==0)
+                    right.push_back(n);
+                else
+                    right.push_back(rishu.top().second);
+            }
+            rishu.push({arr[i],i});
+        }
+        reverse(right.begin(),right.end());
+        
+        //Finding Maximum Area of Histogram
+        long long maxi=0;
+        for(int i=0;i<left.size();i++)
+        {
+            right.at(i)=(right.at(i)-left.at(i)-1);
+            right.at(i)=(right.at(i)*arr[i]);
+            maxi=max(maxi,right.at(i));
+        }
+        return maxi;
+    }
+};
+
+int main()
+ {
+    long long t;
+
+    cin>>t;
+    while(t--)
+    {
+        int n;
+        cin>>n;
+        
+        long long arr[n];
+        for(int i=0;i<n;i++)
+            cin>>arr[i];
+        Solution ob;
+        cout<<ob.getMaxArea(arr, n)<<endl;
+    
+    }
+	return 0;
+}
