@@ -1,0 +1,49 @@
+//PROBLEM STATEMENT-
+
+The world is still suffering from Corona Virus, but now an alien virus has also started spreading rapidly. This strange virus's DNA has 26 bases but otherwise works the same way as a normal virus. Through very detailed research, scientists have figured out there is a specific gene G which is responsible for its infectivity. It has also been found out that this gene has the k'th maximum frequency in the DNA sequence. Your job is to find this gene so that scientists could develop a vaccine for it. If there is no specifc gene found then print -1.
+
+Note: If multiple genes have the same kth maximum frequency, then print the   lexicographically smallest among them all.
+
+Input:
+
+The first line contains integer N denoting the length of the DNA sequence of Virus and an integer K.
+
+The second line contains the DNA sequence of the Virus.
+
+The third line contains an integer Q denoting the number of specific genes which is responsible for the infectivity of the virus.
+
+Next Q line contains the G denoting the specific gene.
+
+Output:
+
+Print a Kth maximum frequency gene in DNA and its frequency separated by space.
+
+Constraints:-
+
+1 <= N <= 10^6
+
+1 <= Q,K <= 10^3
+
+1 <= G <= 10^3
+
+SAMPLE INPUT-
+
+20 3
+codewalkerzalewalede
+10
+c
+wal
+code
+dewalker
+cde
+ale
+ewa
+de
+kerz
+ale
+
+SAMPLE OUTPUT-
+ewa 2
+
+//SOURCE CODE-
+
