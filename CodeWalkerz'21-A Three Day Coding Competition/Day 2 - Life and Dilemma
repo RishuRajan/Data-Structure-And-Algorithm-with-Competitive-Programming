@@ -1,0 +1,49 @@
+//PROBLEM STATEMENT-
+
+You can't resolve a dilemma with all the very same mind that made it. Rishabh suggested a theory for life, Life on Earth began more than 3 billion years ago, evolving from the most basic of microbes into a dazzling array of complexity over time. Sahil, being in dilemma suggested, instead of developing from complex molecules such as RNA, life might have begun with smaller molecules interacting with each other in cycles of reactions.
+
+Ankit being a smart guy, came to rescue and suggested a way to figure out life dilemma. He proposed the one who will find the missing links will be the one who have known life.
+
+Both failed but maybe you can fix the Dilemma.
+
+Given a list of some distinct lifesaving words sorted in random order. Some words are replaced by a question mark(?) which resembles the dilemma.
+
+Find the smallest possible words in length and if length is tie than to solve dilemma consider Lexicographic Order and words should not be already present in the list to replace the dilemma words.
+
+But remember, solving this dilemma won’t solve life Dilemma, and this will always be a Dilemma!!    
+
+Input Format:
+
+First line will be the N representing the number of words.
+
+Next N lines contain the words.
+
+Output Format:
+
+Output the missing words in sorted order from the set of N words that is provided as input.
+
+Constraints
+
+1 <= N <= 10^6
+
+1 <= length of each word <= 5
+
+SAMPLE INPUT-
+10
+li
+fe
+?
+a
+nd
+?
+d
+i
+lema
+?
+SAMPLE OUTPUT- 
+b
+c
+e
+
+//SOURCE CODE-
+
