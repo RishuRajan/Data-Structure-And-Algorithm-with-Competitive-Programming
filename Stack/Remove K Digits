@@ -22,7 +22,7 @@ must not contain leading zeroes)
 which is the smallest.
 
 SOURCE CODE-
-
+//1st code-
 class Solution{
     public:
     string removeKdigits(string num, int k) {
@@ -56,5 +56,50 @@ class Solution{
             return "0";
         else
             return output.substr(startzero);
+    }
+};
+
+//2nd code-
+
+class Solution {
+public:
+    string removeKdigits(string str, int k) {
+        if(str.length() <= k)
+            return "0";
+        if(k == 0)
+            return str;
+        
+        stack <char> rishu;
+        
+        rishu.push(str[0]);
+        
+        for(int i = 1; i<str.length(); i++){
+            while(k>0 && !rishu.empty() && str[i]<rishu.top()){
+                k--;
+                rishu.pop();
+            }
+            rishu.push(str[i]);
+            
+			// We pop any preceeding zeroes
+            if(rishu.size() == 1 && str[i] == '0')
+                rishu.pop();
+        }
+        
+		// For cases like "12345" where every str[i] > s.top()
+        while(k && !rishu.empty()){
+            k--;
+            rishu.pop();
+        }
+        string res = "";
+        while(!rishu.empty()){
+            res.push_back(rishu.top());
+            rishu.pop();
+        }
+        
+        reverse(res.begin(), res.end());
+        if(res.size() == 0)
+            return "0";
+        else
+            return res;
     }
 };
