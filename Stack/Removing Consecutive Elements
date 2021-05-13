@@ -1,0 +1,89 @@
+//PROBLEM STATEMENT-
+
+Given a vector V of  N elements and two special numbers x and y. Remove all consecutive same special elements. The final vector should be free from any consecutive same special elements.
+Note: The final vector may be empty.
+
+Input Format:-
+The first line contains the number of test cases T. Each test case contains N, the number of elements in the vector and the next line contains N consecutive elements separated by spaces. The next line will contain two special numbers.
+
+Output Format:-
+For each testcase, in a newline, print the updated vector.
+
+Constraints:
+1 <= T <=10
+1 <= N <= 105
+1 <= Vi <= 105
+1 <= x, y <= 105
+
+Example:-
+Input:-
+1
+6
+2 1 2 2 1 5
+1 2
+
+Output:-
+2 5
+
+Explanation:
+Testcase1: x = 1 and y = 2. Now, we traverse the vector from left to right and remove all consecutive 1s and 2s. First we remove 2 1 2 2 1 5. Now we are left with 2 1 1 5. Next we remove 1s: 2 1 1 5. We are left with 2 5.
+
+//SOURCE CODE
+
+#include<bits/stdc++.h>
+using namespace std;
+
+vector<int> remove(vector<int>v,int x,int y)
+{
+   vector<int>result;//vector to store required result
+   stack<int>st;
+   for(int i=0;i<v.size();i++)//Traversing through given vector
+   {
+      if(st.size()==0)//if stack is empty
+          st.push(v[i]);
+      else                                    // if stack is not empty and element which is top of stack is consecuitive so we remove it from stack unless push to stack
+      {
+         if(st.top()==v[i] && (v[i]==x || v[i]==y)
+               st.pop();
+         else
+              st.push(v[i]);
+      }
+   }
+   while(st.size())  //pushing required result to result vector
+   {
+      result.push_back(st.top());
+      st.pop();
+   }
+   reverse(result.begin(),result.end()); // As output store in reverse order so we reverse it get the desired output
+   return result;
+}
+
+int main() {
+	int t;
+	cin>>t;
+	while(t--)
+	{
+	    int n;
+	    cin>>n;
+	    vector<int>v;
+	    for(int i=0;i<n;i++)
+	    {
+	        int x;
+	        cin>>x;
+	        v.push_back(x); //Input vector elements
+	    }
+	    
+	    int x,y;
+	    cin>>x>>y;
+	    
+	    vector<int>result= remove(v,x,y);
+	    for(auto i:result)
+	    {
+	        cout<<i<<" ";
+	    }
+	    cout<<endl;
+	   
+	}
+	return 0;
+}
+  
