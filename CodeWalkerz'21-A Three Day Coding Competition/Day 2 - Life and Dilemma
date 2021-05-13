@@ -47,3 +47,61 @@ e
 
 //SOURCE CODE-
 
+#include<bits/stdc++.h>
+using namespace std;
+ 
+string next(string s)
+{
+    int cnt=0;
+    int l =s.length();
+    char r;
+    for(int i=l-1; i>=0; i--)
+    {
+        if(s[i] != 'z')
+        {
+            s[i]++;
+            return s;
+        }
+        s[i] = 'a';
+        r = s[i];
+         cnt++;
+         if(cnt == l)
+         {
+            s = s + r;
+         }
+    }
+    return s;
+}
+ 
+int main()
+{
+	    int n;
+      cin>>n;
+	    unordered_map<string,bool> um;
+	    string s;
+	    int cnt=0;
+	    for(int i=0; i<n; i++)
+	    {
+	        cin>>s;
+	        if(s != "?")
+            um[s] = 1;
+            else
+                cnt++;
+	    }
+        string current = "a";
+        vector<string> v;
+ 
+        for(int i=0; i<cnt; i++)
+        {
+            while(um.find(current) != um.end())
+            {
+                current = next(current);
+            }
+            v.push_back(current);
+            um[current] = 1;
+        }
+        sort(v.begin(), v.end());
+        for(auto x:v)
+            cout<<x<<"\n";
+        return 0;
+}
