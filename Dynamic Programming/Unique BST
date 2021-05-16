@@ -1,0 +1,77 @@
+// PROBLEM STATEMENT-
+
+Given an integer. Find how many structurally unique binary search trees are there that stores the values from 1 to that integer (inclusive). 
+
+Example 1:
+
+Input:
+N = 2
+Output: 2
+Explanation:for N = 2, there are 2 unique
+BSTs
+     1               2  
+      \            /
+       2         1
+Example 2:
+
+Input:
+N = 3
+Output: 5
+Explanation: for N = 3, there are 5
+possible BSTs
+  1           3     3       2     1
+    \        /     /      /  \     \
+     3      2     1      1    3     2
+    /      /       \                 \
+   2      1         2                 3
+   
+   //SOURCE CODE-
+   
+   // { Driver Code Starts
+#include<bits/stdc++.h>
+using namespace std;
+
+class Solution
+{
+    public:
+    //Function to return the total number of possible unique BST. 
+    const int mod=1000000007;
+    int numTrees(int N) 
+    {
+        // Your code here
+        long long memo[N+1];
+        memo[0] = 1;
+    
+    for(int i = 1; i <= N; i++)
+    {
+        memo[i] = 0;
+        
+        for(int j = 0; j < i; j++)
+        {
+            long long res = (memo[j] * memo[i-1-j])%mod;
+            memo[i] = (memo[i] + res)%mod; 
+        }
+    }
+    
+    return int(memo[N]);
+    }
+};
+
+//DRIVER CODE
+#define mod (int)(1e9+7)
+int main()
+{
+    
+    //taking total testcases
+    int t;
+    cin>>t;
+    while(t--){
+        
+        //taking total number of elements
+        int n;
+        cin>>n;
+        Solution ob;
+        //calling function numTrees()
+        cout<<ob.numTrees(n)<<"\n";
+    }
+}
