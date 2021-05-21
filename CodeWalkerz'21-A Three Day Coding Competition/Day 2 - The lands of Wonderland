@@ -1,0 +1,50 @@
+//PROBLEM LINK-
+//PROBLEM STATEMENT-
+In Wonderland there are  cities and  roads connecting them. Each road is of equal length ( unit). The people of Wonderland are very lacking in imagination and instead of finding good names for their cities, they simply assign a number to them. The capital, obviously, is numbered . The queen of hearts rules over the capital and has assigned you a very strange task.
+
+To complete it you have to divide the entire road network in disjoint straight paths such that no city is part of more than one path. To make your life more complicated the queen has assigned two numbers to each city,  and . For each path, you start from the city furthest from the capital and move towards the capital. If you start from city  and the distance between  and  is , then the cost of adding the city  to the path is . And if the path ends at , you need to subtract  from the sum. That is, for each path that you form that starts from  and ends at , the cost is:
+
+
+You need to make the paths in such a way the sum of the cost of forming all the paths is minimized.
+
+Note: If a path contains a single city , then the cost of that path will simply be .
+
+ 
+
+Input Format:
+
+First line of the input contains a single integer  denoting the number of cities.
+
+The next  contains two integer  and  denoting that the cities are connected by road.
+
+The next  lines contain two  integers   and  for each city.
+
+Output Format:
+
+Print a single integer denoting the smallest possible cost of making all the paths.
+
+Constraints:
+
+
+
+
+
+SAMPLE INPUT 
+5
+1 2
+1 3
+1 4
+4 5
+29 -2
+14 9
+46 3
+15 3
+1 4
+SAMPLE OUTPUT 
+56
+Explanation
+The final road network will look like:
+
+
+
+Cost of adding red path = 8, green path = 5 and blue path = 43. Hence, total cost = 56
