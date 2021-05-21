@@ -1,0 +1,63 @@
+//PROBLEM LINK-   https://www.hackerearth.com/challenges/college/codewalkerz-II/algorithm/fd043af74f864c8eba319cdc660246d1/  
+
+PROBLEM STATEMENT-
+Great news! a  effective COVID-19 vaccine as been discovered by scientists of ZindaLand. The King of ZindaLand has authorised the vaccine and the vaccination process is to be started soon. He wants every city to be fully vaccinated.
+
+There are  cities in ZindaLand connected to each other through  bidirectional roads. The vaccination process starts at city  and is then transported to its neighbouring cities through connecting roads. All the cities to which the vaccines can be transported by more than one unique non-cyclic path is completely vaccinated in the same month. In the next month neighbouring cities of the previous vaccinated cities are supplied vaccines and the process continues untill all cities are completely vaccinated.
+
+The king of ZindaLand has  questions and brings in you his highest ranked stratergist for consultation. He has two type of questions.
+
+He wants to know when a particular city would be vaccinated so he gives you city number  and asks for its vaccination month.
+
+He wants to know that at the end of  months how many cities would be completely vaccinated.
+
+
+Note: No city is disconnected from the kingdom.
+
+Input
+
+The first line contains  and , denoting the number of cities and the number of roads in the kingdom respectively.
+
+The second line contains  and , denoting the number of questions the king has and the city from where the vaccination is starting respectively.
+
+The next  lines contain two space separated integers  and  denoting a road between cities labelled  and  .
+
+The next  lines contain two space separated integers  and  denoting the question type and the value asked in the question.
+
+Output
+Print the answer for each of the kings question in a new line.
+
+Constraint
+
+
+
+
+
+SAMPLE INPUT 
+10 12
+6 7
+1 2
+2 3
+1 3
+1 4
+4 5
+7 8
+5 8
+5 6
+5 7
+6 7
+6 9
+9 10
+2 7
+1 1
+2 3
+1 3
+2 5
+1 5
+SAMPLE OUTPUT 
+1
+4
+3
+10
+1
+10
