@@ -1,5 +1,5 @@
 //Quick sort is also Divide and conquer Algorithm.This algorithm is more preferable in case of Array
-//Time complexity be o(n^2)
+//Time complexity be o(nlogn) and space complexity o(1)
 #include<bits/stdc++.h>
 using namespace std;
 //function which return position/index of pivot element
