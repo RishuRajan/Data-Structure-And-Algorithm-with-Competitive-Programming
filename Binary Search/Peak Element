@@ -1,0 +1,74 @@
+//PROBLEM STATEMENT-
+
+Given an array arr of n elements which is first increasing and then may be decreasing, find the maximum element in the array.
+Note: If the array is increasing then just print then last element will be the maximum value.
+
+Example 1:
+
+Input: 
+n = 9
+arr[] = {1,15,25,45,42,21,17,12,11}
+Output: 45
+Explanation: Maximum element is 45.
+Example 2:
+
+Input: 
+n = 5
+arr[] = {1, 45, 47, 50, 5}
+Output: 50
+Explanation: Maximum element is 50.
+
+//SOURCE CODE-
+
+#include <bits/stdc++.h>
+using namespace std;
+
+class Solution
+{
+public:
+	
+	int findMaximum(int arr[], int n) 
+	{
+	    // code here
+	    // 1st method-o(nlog(n))
+	    /*sort(arr,arr+n);
+	    return arr[n-1];
+	    */
+	    
+	    //2nd method-using max heap-o(n)
+	    /*priority_queue<int>pq(arr,arr+n);
+	    return pq.top();
+	    */
+	    
+	    //3rd method-using Binary search-o(logn)
+	    int start=0;
+        int end=(n-1);
+        while(start<end)
+        {
+            int mid=start+(end-start)/2;
+            if(arr[mid]>=arr[mid+1]) 
+                end=mid;
+            else 
+                start=mid+1;
+        }
+         return arr[end];
+	}
+};
+
+int main() 
+{
+    int t;
+    cin >> t;
+    while (t--) {
+        int n, i;
+        cin >> n;
+        int arr[n];
+        for (i = 0; i < n; i++) {
+            cin >> arr[i];
+        }
+        Solution ob;
+        auto ans = ob.findMaximum(arr, n);
+        cout << ans << "\n";
+    }
+    return 0;
+}
