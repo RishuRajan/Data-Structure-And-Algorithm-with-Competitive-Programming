@@ -1,0 +1,67 @@
+//PROBLEM STATEMENT-
+
+Given an array of n positive integers and a number k. Find the minimum number of swaps required to bring all the numbers less than or equal to k together.
+
+Example 1:
+
+Input : arr[ ] = {2, 1, 5, 6, 3} and K = 3
+Output : 1
+Explanation:
+To bring elements 2, 1, 3 together, swap element '5' with '3'
+such that final array will be- arr[] = {2, 1, 3, 6, 5}
+
+Example 2:
+
+Input : arr[ ] = {2, 7, 9, 5, 8, 7, 4} and K = 6 
+Output :  2 
+
+//SOURCE CODE-
+
+#include <iostream>
+using namespace std;
+
+int minSwap(int *arr, int n, int k);
+
+int main() {
+
+	int t,n,k;
+	cin>>t;
+	while(t--)
+    {
+        cin>>n;
+        int arr[n];
+        for(int i=0;i<n;i++)
+            cin>>arr[i];
+        cin>>k;
+        cout << minSwap(arr, n, k) << "\n";
+    }
+	return 0;
+}
+
+int minSwap(int *arr, int n, int k) {
+    // Complet the function
+    
+    int count=0;
+    int min_swaps=0;
+    for(int i=0;i<n;i++)
+    {
+        if(arr[i]<=k)
+          count++;
+    }
+    int unsuccess=0;
+    for(int i=0;i<count;i++)
+    {
+        if(arr[i]>k)
+          unsuccess++;
+        min_swaps=unsuccess;
+    }
+    for(int i=0;i<n-count;i++)
+    {
+        if(arr[i]>k)
+          unsuccess--;
+        if(arr[i+count]>k)
+          unsuccess++;
+        min_swaps=min(min_swaps,unsuccess);
+    }
+    return min_swaps;   
+}
