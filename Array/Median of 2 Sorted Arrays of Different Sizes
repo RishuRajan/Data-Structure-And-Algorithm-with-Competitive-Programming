@@ -1,0 +1,114 @@
+//PROBLEM STATEMENT-
+
+Given two sorted arrays array1 and array2 of size m and n respectively. Find the median of the two sorted arrays.
+
+Example 1:
+
+Input:
+m = 3, n = 4
+array1[] = {1,5,9}
+array2[] = {2,3,6,7}
+Output: 5
+Explanation: The middle element for
+{1,2,3,5,6,7,9} is 5
+Example 2:
+
+Input:
+m = 2, n = 4
+array1[] = {4,6}
+array2[] = {1,2,3,5}
+Output: 3.5
+
+//SOURCE CODE-
+
+#include <bits/stdc++.h>
+using namespace std;
+
+double MedianOfArrays(vector<int>& array1, vector<int>& array2)
+{
+    // Your code goes here
+    // If length of array is even
+    /* Naive Approach
+     vector<int> ans;
+    for(int i=0;i<array1.size();i++)
+        ans.push_back(array1[i]);
+    for(int i=0;i<array2.size();i++)
+        ans.push_back(array2[i]);
+    sort(ans.begin(),ans.end());
+    double res;
+    if((array1.size()+array2.size())%2==1)
+    {
+        int mid=(array1.size()+array2.size())/2;
+        res=ans[mid];
+        return res;
+    }
+    else
+    {
+        int mid=(array1.size()+array2.size())/2;
+        res=(ans[mid]+ans[mid-1])/2.0;
+        return res;
+        */
+        int n=array1.size();
+        int m=array2.size();
+        int i=0,j=0,k=array1.size()-1;
+	    while(i<=k&&j<array2.size())
+	    {
+	        if(array1[i]<array2[j])
+	             i++;
+	        else
+	           swap(array2[j++],array1[k--]);
+	    }
+	    sort(array1.begin(),array1.end());
+	    sort(array2.begin(),array2.end());
+        
+        
+        //for odd number of elements simple to do
+        if((m+n) %2 !=0)
+        {
+            int mid = ((m+n)/2)+1;
+            if(mid<=n)
+                return (double)array1[mid-1];
+            else
+                return  (double)array2[(mid-n)-1];
+        }
+        
+        //for even
+        else
+        {
+            int mid = (m+n)/2;
+            
+            //if mid and mid+1 is in 1st element
+            if(mid<n)
+                return (double)(array1[mid-1]+array1[mid])/2;
+                
+            // if mid is in 1st element but mid+1 in on 2nd element
+            // or it is the boundry condtition
+            else if(mid == n)
+                return (double)(array1[n-1]+array2[0])/2;
+                
+            // if the mid and mid+1 lies in 2nd array    
+            else
+                return (double)(array2[mid-n-1]+array2[mid-n])/2;
+                
+        }
+   }
+
+int main()
+{
+    int t;
+    cin>>t;
+    while(t--)
+    {
+        int m,n;
+        cin>>m;
+        vector<int> array1(m);
+        for (int i = 0; i < m; ++i)
+            cin>>array1[i];
+        cin>>n;
+        vector<int> array2(n);
+        for (int i = 0; i < n; ++i)
+            cin>>array2[i];
+        cout<<MedianOfArrays(array1, array2)<<endl;
+    }
+    return 0; 
+}
