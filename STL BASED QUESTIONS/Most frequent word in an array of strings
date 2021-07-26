@@ -1,0 +1,71 @@
+//PROBLEM STATEMENT-
+
+Given an array arr containing N words consisting of lowercase characters. Your task is to find the most frequent word in the array. If multiple words have same frequency, then print the word whose first occurence occurs last in the array as compared to the other strings with same frequency.
+
+Example 1:
+
+Input:
+N = 3
+arr[] = {geeks,for,geeks}
+Output: geeks
+Explanation: "geeks" comes 2 times.
+Example 2:
+
+Input:
+N = 2
+arr[] = {hello,world}
+Output: world
+Explanation: "hello" and "world" both
+have 1 frequency. We print world as
+its first occurence comes last in the
+input array.
+
+//SOURCE CODE-
+
+#include <bits/stdc++.h>
+using namespace std;
+
+class Solution
+{
+    public:
+    //Function to find most frequent word in an array of strings.
+    string mostFrequentWord(string arr[], int n) 
+    {
+        // code here
+        unordered_map<string,int>m;
+        string ans = arr[0];
+        int count= 1;
+        for(int i = 0 ; i < n ;i++)
+        {
+            m[arr[i]]++;
+            count= max(count,m[arr[i]]);
+        }
+        for(int i = 0 ; i < n ;i++)
+        {
+           if(m[arr[i]] == count)
+           {
+              ans = arr[i];
+              m[arr[i]]--;
+           }
+        }
+        return ans ;
+    }
+};
+
+
+int main()
+{
+    int t;
+    cin >> t;
+    while (t--) {
+        int n;
+        cin >> n;
+
+        string arr[n];
+        for (int i = 0; i < n; i++) cin >> arr[i];
+        Solution obj;
+        cout << obj.mostFrequentWord(arr, n) << endl;
+    }
+    return 0;
+}
+ 
